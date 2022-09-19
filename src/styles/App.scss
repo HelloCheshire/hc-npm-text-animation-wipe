@@ -1,0 +1,32 @@
+.text-animation {
+  background-color: red;
+  text-align: center;
+  overflow: hidden;
+  h1 {
+    font-size: 16.7vw;
+    line-height: 17vw;
+    letter-spacing: -5px;
+    margin: 0;
+  }
+  .text-animation__text span {
+    transform: translate3d(0px, 15vw, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(45deg) skew(0deg, 0deg);
+    display: inline-block;
+    animation-duration: .5s;
+    animation-name: slidein;
+    animation-fill-mode: forwards; 
+  }
+  
+  @keyframes slidein {
+    0% {
+      transform: translate3d(0px, 15vw, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(45deg) skew(0deg, 0deg);
+    }
+    // 70% {
+    //   transform: translate3d(0px, 5vw, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(10deg) skew(0deg, 0deg);
+    // }
+    100% {
+      transform: translate3d(0px, 0vw, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+    }
+  }
+
+
+}
