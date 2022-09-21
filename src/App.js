@@ -1,7 +1,6 @@
 import React from 'react';
 import './styles/App.scss';
 import TextAnimationWipe from './textWipeAnimation';
-import Spacing from './spacing';
 
 function App() {
 
@@ -10,6 +9,7 @@ function App() {
     <>
       <TextAnimationWipe>
         <h1>REGGIE</h1>
+        <p>McReggerson</p>
       </TextAnimationWipe>
       <TextAnimationWipe>
         <h1>KEVIN</h1>
