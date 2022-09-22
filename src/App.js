@@ -5,8 +5,8 @@ import TextAnimationWipe from './textAnimationWipe';
 function App() {
 
   return (
-      <TextAnimationWipe class="test">
-        <h1>SPACE TEST ONE</h1>
+      <TextAnimationWipe>
+        <h1>I will be animated and wiped into view</h1>
       </TextAnimationWipe>
 
   );
