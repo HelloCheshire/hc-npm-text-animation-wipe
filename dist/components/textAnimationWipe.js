@@ -34,17 +34,10 @@ function TextAnimationWipe(_ref) {
       document.addEventListener('scroll', animate);
       allText = childElements.props.children;
       allText.split('').forEach((char, i) => {
-        let isCharEmpty;
-
-        if (char === ' ') {
-          isCharEmpty = true;
-        }
-
         arrayOfChars.push( /*#__PURE__*/_react.default.createElement("span", {
           className: "single-char",
           style: {
-            animationDelay: "calc(5 * ".concat(i, "0ms"),
-            marginRight: isCharEmpty === true ? ".4rem" : ''
+            animationDelay: "calc(5 * ".concat(i, "0ms")
           }
         }, char));
       });
@@ -66,17 +59,10 @@ function TextAnimationWipe(_ref) {
 
       arrayOfChars = [];
       allText.split('').forEach((char, i) => {
-        let isCharEmpty;
-
-        if (char === ' ') {
-          isCharEmpty = true;
-        }
-
         arrayOfChars.push( /*#__PURE__*/_react.default.createElement("span", {
           className: "single-char",
           style: {
-            animationDelay: "calc(5 * ".concat(i, "0ms"),
-            marginRight: isCharEmpty === true ? ".4rem" : ''
+            animationDelay: "calc(5 * ".concat(i, "0ms")
           }
         }, char));
       });

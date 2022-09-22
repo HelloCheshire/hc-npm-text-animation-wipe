@@ -1,7 +1,6 @@
 .text-animation {
   text-align: center;
   overflow: hidden;
-  margin: 1000px 0;
 } 
   .text-animation__text {
     overflow: hidden;
