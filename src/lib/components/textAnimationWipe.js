@@ -21,11 +21,7 @@ function TextAnimationWipe({ children }) {
       document.addEventListener('scroll', animate);
       allText = childElements.props.children;
       allText.split('').forEach((char, i) => {
-        let isCharEmpty;
-        if(char === ' ') {
-          isCharEmpty = true;
-        }
-        arrayOfChars.push(<span className='single-char' style={{animationDelay: `calc(5 * ${i}0ms`, marginRight: isCharEmpty === true ? ".4rem" : ''}}>{char}</span>);
+        arrayOfChars.push(<span className='single-char' style={{animationDelay: `calc(5 * ${i}0ms`}}>{char}</span>);
       })
       const ElementTag = childElements.type;
       setRevealElements(revealElements => [...revealElements, <ElementTag ref={textWrapperRef} className="text-animation__text">{arrayOfChars}</ElementTag>]);
@@ -43,11 +39,7 @@ function TextAnimationWipe({ children }) {
       //Wrap Characters in span and push into Element
       arrayOfChars = [];
       allText.split('').forEach((char, i) => {
-        let isCharEmpty;
-        if(char === ' ') {
-          isCharEmpty = true;
-        }
-        arrayOfChars.push(<span className='single-char' style={{animationDelay: `calc(5 * ${i}0ms`, marginRight: isCharEmpty === true ? ".4rem" : ''}}>{char}</span>);
+        arrayOfChars.push(<span className='single-char' style={{animationDelay: `calc(5 * ${i}0ms`}}>{char}</span>);
       })
 
       const ElementTag = el.type;

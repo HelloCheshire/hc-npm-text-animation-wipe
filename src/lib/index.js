@@ -1,3 +1,3 @@
-import TextWipeAnimation from './components/textWipeAnimation';
+import TextAnimationWipe from './components/textAnimationWipe';
 
-export { TextWipeAnimation };
+export { TextAnimationWipe };

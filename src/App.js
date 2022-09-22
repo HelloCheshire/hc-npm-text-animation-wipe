@@ -1,9 +1,8 @@
 import React from 'react';
 import './styles/App.css';
-import TextAnimationWipe from './textWipeAnimation';
+import TextAnimationWipe from './textAnimationWipe';
 
 function App() {
-
 
   return (
       <TextAnimationWipe class="test">

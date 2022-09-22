@@ -3,7 +3,7 @@
 Make changes to code base
 Ensure to increment the version on the package.json
 npm run build
-npm run publish
+npm publish
 Go here and ensure the new code deployed by ensuring the version was changed:
 https://www.npmjs.com/package/hc-text-animation-wipe
 

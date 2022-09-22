@@ -34,10 +34,17 @@ function TextAnimationWipe(_ref) {
       document.addEventListener('scroll', animate);
       allText = childElements.props.children;
       allText.split('').forEach((char, i) => {
+        let isCharEmpty;
+
+        if (char === ' ') {
+          isCharEmpty = true;
+        }
+
         arrayOfChars.push( /*#__PURE__*/_react.default.createElement("span", {
           className: "single-char",
           style: {
-            animationDelay: "calc(5 * ".concat(i, "0ms")
+            animationDelay: "calc(5 * ".concat(i, "0ms"),
+            marginRight: isCharEmpty === true ? ".4rem" : ''
           }
         }, char));
       });
@@ -59,10 +66,17 @@ function TextAnimationWipe(_ref) {
 
       arrayOfChars = [];
       allText.split('').forEach((char, i) => {
+        let isCharEmpty;
+
+        if (char === ' ') {
+          isCharEmpty = true;
+        }
+
         arrayOfChars.push( /*#__PURE__*/_react.default.createElement("span", {
           className: "single-char",
           style: {
-            animationDelay: "calc(5 * ".concat(i, "0ms")
+            animationDelay: "calc(5 * ".concat(i, "0ms"),
+            marginRight: isCharEmpty === true ? ".4rem" : ''
           }
         }, char));
       });
@@ -81,8 +95,7 @@ function TextAnimationWipe(_ref) {
       var scrollPosition = scrollY + windowHeight;
       var elementPosition = textWrapperRef.current && textWrapperRef.current.getBoundingClientRect().top + scrollY + elementHeight;
 
-      if (scrollPosition > elementPosition) {
-        console.log("IN VIEW");
+      if (scrollPosition > elementPosition + 200) {
         return true;
       }
 
@@ -91,8 +104,6 @@ function TextAnimationWipe(_ref) {
 
     function animate() {
       if (inView()) {
-        console.log("ANIMATE");
-
         for (var i = 0; i < revealElements.length; i++) {
           mainWrapper.current.className = "text-animation animate";
           mainWrapper.current.key = "text-animation-key=".concat(i);
