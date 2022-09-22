@@ -9,16 +9,6 @@ function App() {
     <>
       <TextAnimationWipe>
         <h1>REGGIE</h1>
-        <p>McReggerson</p>
-      </TextAnimationWipe>
-      <TextAnimationWipe>
-        <h1>KEVIN</h1>
-      </TextAnimationWipe>
-      <TextAnimationWipe>
-        <h1>SAMANTHA</h1>
-      </TextAnimationWipe>
-      <TextAnimationWipe>
-        <h1>SUSAN</h1>
       </TextAnimationWipe>
     </>
   );

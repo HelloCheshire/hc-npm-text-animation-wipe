@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, memo } from 'react';
-import './styles/App.scss';
+import '../styles/App.scss';
 
 function TextAnimationWipe({ children }) {
   
