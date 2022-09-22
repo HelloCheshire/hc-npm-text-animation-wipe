@@ -3,7 +3,7 @@
 
 ## Useage
 
-<img src="./src/readme.png" alt="Fruit Tree Demo" width="400">
+<img src="/readme.png" alt="Image usage" width="400">
 
 ## Development Process for updating and deplying as an NPM package
 
