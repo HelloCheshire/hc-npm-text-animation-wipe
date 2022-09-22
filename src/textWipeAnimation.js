@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState, memo } from 'react';
-import '../styles/App.scss';
+import React, { useEffect, useRef, useState  } from 'react';
+import './styles/App.css';
 
 function TextAnimationWipe({ children }) {
   
@@ -9,8 +9,6 @@ function TextAnimationWipe({ children }) {
 
   useEffect(() => {
     setRevealElements([])
-    console.log('Rendering!');
-    console.log('children!', children);
     const childElements = children;
 
     //Loop through children
@@ -23,7 +21,11 @@ function TextAnimationWipe({ children }) {
       document.addEventListener('scroll', animate);
       allText = childElements.props.children;
       allText.split('').forEach((char, i) => {
-        arrayOfChars.push(<span className='single-char' style={{animationDelay: `calc(5 * ${i}0ms`}}>{char}</span>);
+        let isCharEmpty;
+        if(char === ' ') {
+          isCharEmpty = true;
+        }
+        arrayOfChars.push(<span className='single-char' style={{animationDelay: `calc(5 * ${i}0ms`, marginRight: isCharEmpty === true ? ".4rem" : ''}}>{char}</span>);
       })
       const ElementTag = childElements.type;
       setRevealElements(revealElements => [...revealElements, <ElementTag ref={textWrapperRef} className="text-animation__text">{arrayOfChars}</ElementTag>]);
@@ -41,7 +43,11 @@ function TextAnimationWipe({ children }) {
       //Wrap Characters in span and push into Element
       arrayOfChars = [];
       allText.split('').forEach((char, i) => {
-        arrayOfChars.push(<span className='single-char' style={{animationDelay: `calc(5 * ${i}0ms`}}>{char}</span>);
+        let isCharEmpty;
+        if(char === ' ') {
+          isCharEmpty = true;
+        }
+        arrayOfChars.push(<span className='single-char' style={{animationDelay: `calc(5 * ${i}0ms`, marginRight: isCharEmpty === true ? ".4rem" : ''}}>{char}</span>);
       })
 
       const ElementTag = el.type;
@@ -51,16 +57,13 @@ function TextAnimationWipe({ children }) {
 
         //Animate once in viewport by appending class to ref
         function inView() {
-          console.log("mainWrapper", mainWrapper.current)
-          console.log("textWrapperRef", textWrapperRef.current)
           var elementHeight = textWrapperRef.current && textWrapperRef.current.clientHeight;
           var windowHeight = window.innerHeight;
           var scrollY = window.scrollY || window.pageYOffset;
           var scrollPosition = scrollY + windowHeight;
           var elementPosition = textWrapperRef.current && textWrapperRef.current.getBoundingClientRect().top + scrollY + elementHeight;
-    
-          if (scrollPosition > elementPosition) {
-            console.log("IN VIEW")
+  
+          if (scrollPosition > elementPosition + 200) {
             return true;
           }
           return false;
@@ -68,7 +71,6 @@ function TextAnimationWipe({ children }) {
     
         function animate() {
           if (inView()) {
-            console.log("ANIMATE")
             for (var i = 0; i < revealElements.length; i++) {
               mainWrapper.current.className = "text-animation animate";
               mainWrapper.current.key = `text-animation-key=${i}`;

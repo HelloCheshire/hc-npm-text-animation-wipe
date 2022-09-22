@@ -1,6 +1,15 @@
-# Getting Started with Create React App
+# PROCESS FOR UPDATING AND DEPLOYING TO NPM 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Make changes to code base
+Ensure to increment the version on the package.json
+npm run build
+npm run publish
+Go here and ensure the new code deployed by ensuring the version was changed:
+https://www.npmjs.com/package/hc-text-animation-wipe
+
+I followed the structure of this tutorial:
+https://levelup.gitconnected.com/publish-react-components-as-an-npm-package-7a671a2fb7f
+
 
 ## Available Scripts
 

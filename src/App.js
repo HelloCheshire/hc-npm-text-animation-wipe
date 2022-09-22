@@ -1,16 +1,15 @@
 import React from 'react';
-import './styles/App.scss';
+import './styles/App.css';
 import TextAnimationWipe from './textWipeAnimation';
 
 function App() {
 
 
   return (
-    <>
-      <TextAnimationWipe>
-        <h1>REGGIE</h1>
+      <TextAnimationWipe class="test">
+        <h1>SPACE TEST ONE</h1>
       </TextAnimationWipe>
-    </>
+
   );
 }
 
