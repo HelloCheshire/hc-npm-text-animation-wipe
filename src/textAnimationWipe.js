@@ -55,7 +55,7 @@ function TextAnimationWipe({ children }) {
           var scrollPosition = scrollY + windowHeight;
           var elementPosition = textWrapperRef.current && textWrapperRef.current.getBoundingClientRect().top + scrollY + elementHeight;
   
-          if (scrollPosition > elementPosition + 200) {
+          if (scrollPosition > elementPosition) {
             return true;
           }
           return false;
