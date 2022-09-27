@@ -4,50 +4,20 @@
 } 
   .text-animation__text {
     overflow: hidden;
-    animation-name: animateEntireWord;
-    animation-duration: 1s;
-  }
-  @keyframes animateEntireWord {
-    0% {
-      transform: rotate(2deg);
-      transform-origin: 0 0;
-    }
-    100% {
-      transform: rotate(0deg);
-      transform-origin: bottom left;
-    }
   }
   .text-animation__text span {
     display: inline-block;
     opacity: 0;
   }
 
-  @keyframes slidein {
-    0% {
-      transform: translate3d(0px, 18vw, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(45deg) skew(0deg, 0deg);
-      opacity: 0;
-    }
-    30% {
-      opacity: 1;
-    }
-    100% {
-      transform: translate3d(0px, 0vw, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
-      opacity: 1;
-    }
-  }
-
 .text-animation.animate .text-animation__text span{
-  transform: translate3d(0px, 18vw, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(45deg) skew(0deg, 0deg);
-  animation-duration: .5s;
-  animation-name: slidein;
-  animation-fill-mode: forwards; 
+  transform: translate3d(0px, 0vw, 0px) rotate(0) !important;
+  opacity: 1;
 }
 
 .text-animation.animate {
   animation-name: rotateEntireWord;
 }
-
-
 
 .single-char {
   white-space:pre;

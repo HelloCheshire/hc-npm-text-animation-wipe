@@ -1,17 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './styles/App.css';
 
-//PROPS
-//// staggerGroup (line, word, char)
-//// staggerOffset (group animation offset in ms)
-//// rotation (deg offset)
-//// revealDirection (left, right, bottom, top (defaults to bottom))
-
-function TextAnimationWipe({ children, staggerOffset, staggerGroup }) {
+function TextAnimationWipe({ children, staggerOffset, staggerGroup, revealDirection = 'bottom', rotation = 0, duration = 600 }) {
 
   const mainWrapper = useRef();
   const textWrapperRef = useRef();
   const [revealElements, setRevealElements] = useState([]);
+  const cssTransform = {
+    'top': `translate3d(0px, -100%, 0px) rotate(${rotation}deg)`,
+    'bottom': `translate3d(0px, 100%, 0px) rotate(${rotation}deg)`,
+    'right': `translate3d(100%, 0px, 0px) rotate(${rotation}deg)`,
+    'left': `translate3d(-100%, 0px, 0px) rotate(${rotation}deg)`,
+  }[revealDirection];
 
   useEffect(() => {
     setRevealElements([])
@@ -33,19 +33,20 @@ function TextAnimationWipe({ children, staggerOffset, staggerGroup }) {
 
       //Wrap Characters in span and push into Element
       arrayOfChars = [];
+
       switch (staggerGroup) {
         case 'char':
           allText.split('').forEach((char, i) => {
-            arrayOfChars.push(<span className='single-char' style={{ animationDelay: `calc(${staggerOffset} * ${i}0ms` }}>{char}</span>);
+            arrayOfChars.push(<span className='single-char' style={{ transition: `all ${duration}ms`, transitionDelay: `calc(${staggerOffset} * ${i}0ms`, transform: cssTransform }}>{char}</span>);
           })
           break;
         case 'word':
           allText.split(/(\s+)/).forEach((word, i) => {
-            arrayOfChars.push(<span className='single-char' style={{ animationDelay: `calc(${staggerOffset} * ${i}0ms` }}>{word}</span>);
+            arrayOfChars.push(<span className='single-char' style={{ transition: `all ${duration}ms`, transitionDelay: `calc(${staggerOffset} * ${i}0ms`, transform: cssTransform }}>{word}</span>);
           })
           break;
         case 'line':
-          arrayOfChars.push(<span className='single-char' style={{ animationDelay: `calc(${staggerOffset} * ${childIndex}ms` }}>{allText}</span>);
+          arrayOfChars.push(<span className='single-char' style={{ transition: `all ${duration}ms`, transitionDelay: `calc(${staggerOffset} * ${childIndex}ms`, transform: cssTransform }}>{allText}</span>);
           break;
       }
 
