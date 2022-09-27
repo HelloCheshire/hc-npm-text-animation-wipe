@@ -1,75 +1,82 @@
-import React, { useEffect, useRef, useState  } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './styles/App.css';
 
-function TextAnimationWipe({ children }) {
-  
+//PROPS
+//// staggerGroup (line, word, char)
+//// staggerOffset (group animation offset in ms)
+//// rotation (deg offset)
+//// revealDirection (left, right, bottom, top (defaults to bottom))
+
+function TextAnimationWipe({ children, staggerOffset, staggerGroup }) {
+
   const mainWrapper = useRef();
   const textWrapperRef = useRef();
   const [revealElements, setRevealElements] = useState([]);
 
   useEffect(() => {
     setRevealElements([])
-    const childElements = children;
+    let childElements = children;
 
     //Loop through children
     //pass element to seperate function that does all below logic
 
-    // SINGLE ELEMENT ONLY
-    if(!Array.isArray(childElements)){
-      let allText;
-      let arrayOfChars = [];
-      document.addEventListener('scroll', animate);
-      allText = childElements.props.children;
-      allText.split('').forEach((char, i) => {
-        arrayOfChars.push(<span className='single-char' style={{animationDelay: `calc(5 * ${i}0ms`}}>{char}</span>);
-      })
-      const ElementTag = childElements.type;
-      setRevealElements(revealElements => [...revealElements, <ElementTag ref={textWrapperRef} className="text-animation__text">{arrayOfChars}</ElementTag>]);
-      animate();
-      return;
+    // If single element, force inside array to match multi-node children
+    if (!Array.isArray(childElements)) {
+      childElements = [].concat(childElements);
     }
 
-    //MULTIPLE ELEMENTS
-    [...childElements].forEach((el) => {
-      let allText;
+    //Loop through and wrap items in spans
+    [...childElements].forEach((el, childIndex) => {
       let arrayOfChars = [];
       document.addEventListener('scroll', animate);
-      allText = el.props.children;
+      let allText = el.props.children;
 
       //Wrap Characters in span and push into Element
       arrayOfChars = [];
-      allText.split('').forEach((char, i) => {
-        arrayOfChars.push(<span className='single-char' style={{animationDelay: `calc(5 * ${i}0ms`}}>{char}</span>);
-      })
+      switch (staggerGroup) {
+        case 'char':
+          allText.split('').forEach((char, i) => {
+            arrayOfChars.push(<span className='single-char' style={{ animationDelay: `calc(${staggerOffset} * ${i}0ms` }}>{char}</span>);
+          })
+          break;
+        case 'word':
+          allText.split(/(\s+)/).forEach((word, i) => {
+            arrayOfChars.push(<span className='single-char' style={{ animationDelay: `calc(${staggerOffset} * ${i}0ms` }}>{word}</span>);
+          })
+          break;
+        case 'line':
+          arrayOfChars.push(<span className='single-char' style={{ animationDelay: `calc(${staggerOffset} * ${childIndex}ms` }}>{allText}</span>);
+          break;
+      }
 
       const ElementTag = el.type;
       setRevealElements(revealElements => [...revealElements, <ElementTag ref={textWrapperRef} className="text-animation__text">{arrayOfChars}</ElementTag>]);
       animate();
     })
 
-        //Animate once in viewport by appending class to ref
-        function inView() {
-          var elementHeight = textWrapperRef.current && textWrapperRef.current.clientHeight;
-          var windowHeight = window.innerHeight;
-          var scrollY = window.scrollY || window.pageYOffset;
-          var scrollPosition = scrollY + windowHeight;
-          var elementPosition = textWrapperRef.current && textWrapperRef.current.getBoundingClientRect().top + scrollY + elementHeight;
-  
-          if (scrollPosition > elementPosition) {
-            return true;
-          }
-          return false;
+    //Animate once in viewport by appending class to ref
+    function inView() {
+      var elementHeight = textWrapperRef.current && textWrapperRef.current.clientHeight;
+      var windowHeight = window.innerHeight;
+      var scrollY = window.scrollY || window.pageYOffset;
+      var scrollPosition = scrollY + windowHeight;
+      var elementPosition = textWrapperRef.current && textWrapperRef.current.getBoundingClientRect().top + scrollY + elementHeight;
+
+      if (scrollPosition > elementPosition) {
+        return true;
+      }
+      return false;
+    }
+
+    function animate() {
+      if (inView()) {
+        for (var i = 0; i < revealElements.length; i++) {
+          mainWrapper.current.className = "text-animation animate";
+          mainWrapper.current.key = `text-animation-key=${i}`;
         }
-    
-        function animate() {
-          if (inView()) {
-            for (var i = 0; i < revealElements.length; i++) {
-              mainWrapper.current.className = "text-animation animate";
-              mainWrapper.current.key = `text-animation-key=${i}`;
-            }
-          }
-        }
-    
+      }
+    }
+
   }, [mainWrapper.current]);
 
 

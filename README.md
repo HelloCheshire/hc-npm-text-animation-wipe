@@ -1,4 +1,4 @@
-# Hello Cheshire React Component for an Animating Text Wipe
+# React Component for an Animating Text Wipe
 
 
 ## Useage
