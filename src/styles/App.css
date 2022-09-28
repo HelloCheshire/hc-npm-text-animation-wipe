@@ -15,10 +15,6 @@
   opacity: 1;
 }
 
-.text-animation.animate {
-  animation-name: rotateEntireWord;
-}
-
 .single-char {
   white-space:pre;
 }

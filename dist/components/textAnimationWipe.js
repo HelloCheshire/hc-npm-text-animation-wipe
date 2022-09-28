@@ -7,6 +7,10 @@ exports.default = void 0;
 
 require("core-js/modules/web.dom-collections.iterator.js");
 
+require("core-js/modules/es.regexp.exec.js");
+
+require("core-js/modules/es.string.split.js");
+
 var _react = _interopRequireWildcard(require("react"));
 
 require("./styles/App.css");
@@ -17,55 +21,79 @@ function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && 
 
 function TextAnimationWipe(_ref) {
   let {
-    children
+    children,
+    staggerOffset = 3,
+    staggerGroup,
+    revealDirection = 'bottom',
+    rotation = 0,
+    duration = 600
   } = _ref;
   const mainWrapper = (0, _react.useRef)();
   const textWrapperRef = (0, _react.useRef)();
   const [revealElements, setRevealElements] = (0, _react.useState)([]);
+  const cssTransform = {
+    'top': "translate3d(0px, -100%, 0px) rotate(".concat(rotation, "deg)"),
+    'bottom': "translate3d(0px, 100%, 0px) rotate(".concat(rotation, "deg)"),
+    'right': "translate3d(100%, 0px, 0px) rotate(".concat(rotation, "deg)"),
+    'left': "translate3d(-100%, 0px, 0px) rotate(".concat(rotation, "deg)")
+  }[revealDirection];
   (0, _react.useEffect)(() => {
     setRevealElements([]);
-    const childElements = children; //Loop through children
+    let childElements = children; //Loop through children
     //pass element to seperate function that does all below logic
-    // SINGLE ELEMENT ONLY
+    // If single element, force inside array to match multi-node children
 
     if (!Array.isArray(childElements)) {
-      let allText;
-      let arrayOfChars = [];
-      document.addEventListener('scroll', animate);
-      allText = childElements.props.children;
-      allText.split('').forEach((char, i) => {
-        arrayOfChars.push( /*#__PURE__*/_react.default.createElement("span", {
-          className: "single-char",
-          style: {
-            animationDelay: "calc(5 * ".concat(i, "0ms")
-          }
-        }, char));
-      });
-      const ElementTag = childElements.type;
-      setRevealElements(revealElements => [...revealElements, /*#__PURE__*/_react.default.createElement(ElementTag, {
-        ref: textWrapperRef,
-        className: "text-animation__text"
-      }, arrayOfChars)]);
-      animate();
-      return;
-    } //MULTIPLE ELEMENTS
+      childElements = [].concat(childElements);
+    } //Loop through and wrap items in spans
 
 
-    [...childElements].forEach(el => {
-      let allText;
+    [...childElements].forEach((el, childIndex) => {
       let arrayOfChars = [];
       document.addEventListener('scroll', animate);
-      allText = el.props.children; //Wrap Characters in span and push into Element
+      let allText = el.props.children; //Wrap Characters in span and push into Element
 
       arrayOfChars = [];
-      allText.split('').forEach((char, i) => {
-        arrayOfChars.push( /*#__PURE__*/_react.default.createElement("span", {
-          className: "single-char",
-          style: {
-            animationDelay: "calc(5 * ".concat(i, "0ms")
-          }
-        }, char));
-      });
+
+      switch (staggerGroup) {
+        case 'char':
+          allText.split('').forEach((char, i) => {
+            arrayOfChars.push( /*#__PURE__*/_react.default.createElement("span", {
+              className: "single-char",
+              style: {
+                transition: "all ".concat(duration, "ms"),
+                transitionDelay: "calc(".concat(staggerOffset, " * ").concat(i, "0ms"),
+                transform: cssTransform
+              }
+            }, char));
+          });
+          break;
+
+        case 'word':
+          allText.split(/(\s+)/).forEach((word, i) => {
+            arrayOfChars.push( /*#__PURE__*/_react.default.createElement("span", {
+              className: "single-char",
+              style: {
+                transition: "all ".concat(duration, "ms"),
+                transitionDelay: "calc(".concat(staggerOffset, " * ").concat(i, "0ms"),
+                transform: cssTransform
+              }
+            }, word));
+          });
+          break;
+
+        case 'line':
+          arrayOfChars.push( /*#__PURE__*/_react.default.createElement("span", {
+            className: "single-char",
+            style: {
+              transition: "all ".concat(duration, "ms"),
+              transitionDelay: "calc(".concat(staggerOffset, " * ").concat(childIndex, "ms"),
+              transform: cssTransform
+            }
+          }, allText));
+          break;
+      }
+
       const ElementTag = el.type;
       setRevealElements(revealElements => [...revealElements, /*#__PURE__*/_react.default.createElement(ElementTag, {
         ref: textWrapperRef,
