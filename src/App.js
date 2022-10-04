@@ -15,7 +15,7 @@ function App() {
         duration={800}
         rotation={0}
       >
-        <h1>Stagger Offset</h1>
+        <h1>I am an example of what you can do.</h1>
       </TextAnimationWipe>
 
       <TextAnimationWipe
@@ -24,7 +24,7 @@ function App() {
         revealDirection="top"
         duration={600}
       >
-        <h1>I will be animated and wiped into view quickly</h1>
+        <h1>I am an example of what you can do.</h1>
       </TextAnimationWipe>
       <TextAnimationWipe
         staggerOffset={15}
@@ -32,7 +32,7 @@ function App() {
         rotation={10}
         duration={600}
       >
-        <h1>I will be animated and wiped into view quickly</h1>
+        <h1>I am an example of what you can do.</h1>
       </TextAnimationWipe>
       <TextAnimationWipe
         staggerOffset={300}
@@ -40,9 +40,9 @@ function App() {
         rotation={20}
         duration={2000}
       >
-        <h1>Line 1 hello world!</h1>
-        <h1>Line 2 hello world!</h1>
-        <h1>Line 3 hello world!</h1>
+        <h1>I am an example of what you can do.</h1>
+        <h1>I am an example of what you can do.</h1>
+        <h1>I am an example of what you can do.</h1>
       </TextAnimationWipe>
     </>
   );

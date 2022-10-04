@@ -1,5 +1,6 @@
 # React Component for an Animating Text Wipe
 
+<img src="https://i.imgur.com/OPDwYtc.gif" alt="Image usage" width="400">
 
 ## Useage
 
