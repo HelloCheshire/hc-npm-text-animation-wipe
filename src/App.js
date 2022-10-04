@@ -15,7 +15,7 @@ function App() {
         duration={800}
         rotation={0}
       >
-        <h1>Stagger OffsetTT</h1>
+        <h1>Stagger Offset</h1>
       </TextAnimationWipe>
 
       <TextAnimationWipe
