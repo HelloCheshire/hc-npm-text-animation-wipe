@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import './styles/App.css';
 
 function TextAnimationWipe({ children, staggerGroup = "char", staggerOffset = 3, revealDirection = 'bottom', rotation = 0, duration = 600 }) {
 

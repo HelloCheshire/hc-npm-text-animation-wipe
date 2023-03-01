@@ -2,9 +2,6 @@ import React from 'react';
 import TextAnimationWipe from './textAnimationWipe';
 
 function App() {
-
-
-
   return (
     <>
       <TextAnimationWipe
