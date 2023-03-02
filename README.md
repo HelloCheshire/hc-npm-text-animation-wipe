@@ -1,18 +1,57 @@
 # React Component for an Animating Text Wipe
 
+*Crafted by the [HelloCheshire](https://hellocheshire.com) developer team.*
+
+
 <img src="https://i.imgur.com/OPDwYtc.gif" alt="Image usage" width="400">
+
+## Installation
+
+`npm install --save hc-text-animation-wipe`
 
 ## Useage
 
 
 
-### Example 
+### Example
 
-<img src="https://i.imgur.com/lquT5hk.png" alt="Image usage" width="400">
+```javascript
+import 'hc-text-animation-wipe/dist/components/styles/App.css';
+import { TextAnimationWipe } from 'hc-text-animation-wipe';
 
-### Example with properties 
+function App() {
+  return(
+    <TextAnimationWipe>
+      <h1>I will animate into view!</h1>
+    </TextAnimationWipe>
+  )
+}
 
-<img src="https://i.imgur.com/oSsI1Y6.png" alt="Image usage" width="400">
+export default App;
+```
+
+### Example with properties
+
+```javascript
+import 'hc-text-animation-wipe/dist/components/styles/App.css';
+import { TextAnimationWipe } from 'hc-text-animation-wipe';
+
+function App() {
+  return(
+    <TextAnimationWipe
+      staggerOffset={5}
+      staggerGroup="char"
+      revealDirection="top"
+      duration={800}
+      rotation={0}
+    >
+      <h1>I will animate into view!</h1>
+    </TextAnimationWipe>
+  )
+}
+
+export default App;
+```
 
 ## Properties
 
@@ -23,7 +62,7 @@
 - The rotation prop determines the rotation in degrees. Default = 0.
 
 ### staggerGroup
-- The staggerGroup prop determines how the inputted line of text will be displayed, either by individual characers, words or the entire line. Here are the stagger group strings to input into the component: 
+- The staggerGroup prop determines how the inputted line of text will be displayed, either by individual characers, words or the entire line. Here are the stagger group strings to input into the component:
 "char"
 "word"
 "line"
@@ -35,7 +74,7 @@
 - The revealDirection prop determines from which direction the text will animate in from. Default = "bottom"
 
 
-## Development 
+## Development
 
 ### Process for updating and deplying as an NPM package
 
